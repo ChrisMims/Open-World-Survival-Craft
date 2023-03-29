@@ -1,0 +1,67 @@
+{
+		"id": "001",
+		"name": "Dirt",
+		"description": "It's just a block of dirt...",
+		"type": "Terrain"
+	},
+	
+	{
+		"id": "002",
+		"name": "Stone",
+		"description": "Just a slab of stone.."
+	}
+
+	"lighting": [
+	{
+		"id": "001",
+		"name": "Candle",
+		"description": "A small candle. It doesn't produce much light."
+	},
+	{
+		"id": "002"
+		"name": "Floor Lamp"
+		"description": "A small floor lamp."
+	}
+
+	{
+		"id": "001",
+		"name": "Wooden Door"
+		"description": "A sturdy wooden door."
+	},
+	{
+		"id": "002"
+		"name": "Glass Door"
+		"description": "All the protection of a door, now with 100% less door!"
+	}
+
+	{
+		"id": "001"
+		"name": "Stone Walls"
+		"description": "Cold to the touch, but at least they look nice."
+	}
+	{
+		"id": "002"
+		"name": "Wooden Walls"
+		"description": "A timeless classic."
+	}
+	{
+		"id": "003"
+		"name": "Metal Walls"
+		"description": "For that futuristic vibe."
+	}	
+
+	{
+		"id": "001"
+		"name": "Stone Floor"
+		"description": "Cold to the touch, but at least they look nice."
+	}
+	{
+		"id": "002"
+		"name": "Wooden Floor"
+		"description": "A timeless classic."
+	}
+	{
+		"id": "003"
+		"name": "Metal Floor"
+		"description": "For that futuristic vibe."
+	}
