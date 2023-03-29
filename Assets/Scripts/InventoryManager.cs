@@ -45,7 +45,7 @@ public class InventoryManager : MonoBehaviour
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if(itemInSlot != null)
+            if(itemInSlot == null)
             {
                 // If an empty slot is found, spawn an item in it.
                 SpawnNewItem(item, slot);
