@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-
+/*
     // 001
     public int BlockID { get; set; }
     // Dirt
@@ -33,5 +33,30 @@ public class InventoryManager : MonoBehaviour
     void Update()
     {
         
+    }
+*/
+    
+    public InventorySlot[] inventorySlots;
+    public GameObject inventoryItemPrefab;
+    public void AddItem(Item item)
+    {
+        // Find an empty slot
+        for(int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if(itemInSlot != null)
+            {
+                // If an empty slot is found, spawn an item in it.
+                SpawnNewItem(item, slot);
+                return;
+            }
+        }
+    }
+    void SpawnNewItem(Item item, InventorySlot slot)
+    {
+        GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
+        InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
+        inventoryItem.InitialiseItem(item);
     }
 }
