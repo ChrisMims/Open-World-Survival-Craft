@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public Item item;
+
     [Header("UI")]
     public Image image;
 
@@ -13,6 +15,15 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     [Tooltip("Is the canvas a child of another game object?")] public bool canvasIsChild = false;
 
+    private void Start()
+    {
+        // Just for testing.
+        InitialiseItem(item);
+    }
+    public void InitialiseItem(Item newItem)
+    {
+        image.sprite = newItem.image;
+    }
     // Drag and drop inventory items
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -27,8 +38,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             transform.SetParent(transform.root);
         }
-        //transform.SetParent(transform.root);
-        //transform.SetParent(transform.parent.parent);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
     }
