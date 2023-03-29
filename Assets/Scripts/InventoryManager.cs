@@ -38,7 +38,7 @@ public class InventoryManager : MonoBehaviour
     
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
-    public void AddItem(Item item)
+    public bool AddItem(Item item)
     {
         // Find an empty slot
         for(int i = 0; i < inventorySlots.Length; i++)
@@ -49,9 +49,11 @@ public class InventoryManager : MonoBehaviour
             {
                 // If an empty slot is found, spawn an item in it.
                 SpawnNewItem(item, slot);
-                return;
+                return true;
             }
         }
+        // If no free slot is found:
+        return false;
     }
     void SpawnNewItem(Item item, InventorySlot slot)
     {

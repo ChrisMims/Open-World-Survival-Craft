@@ -9,6 +9,13 @@ public class InventoryDemo : MonoBehaviour
 
     public void PickupItem(int id)
     {
-        inventoryManager.AddItem(itemsToPickup[id]);
+        bool result = inventoryManager.AddItem(itemsToPickup[id]);
+        if (result)
+        {
+            Debug.Log("Item added to inventory.");
+        } else
+        {
+            Debug.Log("Item not added. Inventory is full!");
+        }
     }
 }
