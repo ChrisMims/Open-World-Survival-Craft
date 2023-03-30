@@ -5817,6 +5817,7 @@ MonoBehaviour:
   mainInventoryWindow: {fileID: 1631297075}
   openInventoryButton: {fileID: 1065085326}
   mainInventoryOpen: 0
+  inventoryDemo: {fileID: 1291483032}
 --- !u!4 &1171819650
 Transform:
   m_ObjectHideFlags: 0
@@ -6204,6 +6205,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e62042bdd75121a438cd43de193c4203, type: 2}
   - {fileID: 11400000, guid: ce24ec2f687239e4eb7b0d37dc98b36b, type: 2}
   - {fileID: 11400000, guid: 74dd821de33be4d45a5d3b431f77487b, type: 2}
+  item: {fileID: 0}
 --- !u!114 &1298369091 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7427978041658835014, guid: 0ad6bbcd2b2716c499ae3d2740747f01,

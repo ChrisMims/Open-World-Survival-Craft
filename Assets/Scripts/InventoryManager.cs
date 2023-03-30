@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -67,6 +66,10 @@ public class InventoryManager : MonoBehaviour
         selectedSlot = newValue;
 
         inventoryDemo.GetSelectedItem();
+        if (inventoryDemo.item != null)
+        {
+            Debug.Log("Received item: " + inventoryDemo.item);
+        }
     }
     void ToggleInventory(bool mainInventoryVisible)
     {
