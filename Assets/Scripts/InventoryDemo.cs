@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryDemo : MonoBehaviour
@@ -12,10 +10,11 @@ public class InventoryDemo : MonoBehaviour
         bool result = inventoryManager.AddItem(itemsToPickup[id]);
         if (result)
         {
-            Debug.Log("Item added to inventory.");
-        } else
+            //Debug.Log("Item added to inventory.");
+        }
+        else
         {
-            Debug.Log("Item not added. Inventory is full!");
+            //Debug.Log("Item not added. Inventory is full!");
         }
     }
 }

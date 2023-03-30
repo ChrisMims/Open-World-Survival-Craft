@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -17,13 +15,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Transform parentAfterDrag;
 
     [Tooltip("Is the canvas a child of another game object?")] public bool canvasIsChild = false;
-/*
-    private void Start()
-    {
-        // Just for testing.
-        InitialiseItem(item);
-    }
-*/
+    /*
+        private void Start()
+        {
+            // Just for testing.
+            InitialiseItem(item);
+        }
+    */
     public void InitialiseItem(Item newItem)
     {
         item = newItem;

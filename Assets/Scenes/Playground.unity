@@ -3826,7 +3826,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 758765084}
-  - component: {fileID: 758765083}
   - component: {fileID: 758765082}
   m_Layer: 0
   m_Name: GameManager
@@ -3847,21 +3846,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afcd2d4af5861a4a932cb03a91adbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &758765083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758765080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1bb15e92267ed4e82ca33eae934275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxStackedItems: 999
-  inventorySlots: []
-  inventoryItemPrefab: {fileID: 0}
 --- !u!4 &758765084
 Transform:
   m_ObjectHideFlags: 0
