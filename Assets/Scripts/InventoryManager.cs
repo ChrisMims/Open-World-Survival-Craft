@@ -5,43 +5,59 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-/*
-    // 001
-    public int BlockID { get; set; }
-    // Dirt
-    public string BlockName { get; set; }
-    // A block of dirt
-    public string BlockDescription { get; set; }
-    // 7
-    public string BlockType { get; set; }
+    /*
+        // 001
+        public int BlockID { get; set; }
+        // Dirt
+        public string BlockName { get; set; }
+        // A block of dirt
+        public string BlockDescription { get; set; }
+        // 7
+        public string BlockType { get; set; }
 
-    List<Block> blockList = new List<Block>();
+        List<Block> blockList = new List<Block>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Create list/array of items and quantity
-        //        blockList.Add(new Block());
-        blockList.Add(new Block("Dirt", "A block of dirt..."));
-        blockList.Add(new Block("Stone", "A large chunk of stone."));
-        Debug.Log(blockList.Count);
-        Debug.Log(blockList[1].blockName + "\n" + blockList[1].blockDescription);
+        // Start is called before the first frame update
+        void Start()
+        {
+            // Create list/array of items and quantity
+            //        blockList.Add(new Block());
+            blockList.Add(new Block("Dirt", "A block of dirt..."));
+            blockList.Add(new Block("Stone", "A large chunk of stone."));
+            Debug.Log(blockList.Count);
+            Debug.Log(blockList[1].blockName + "\n" + blockList[1].blockDescription);
 
-    }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-*/
-    
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+    */
+
+    public int maxStackedItems = 999;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
     public bool AddItem(Item item)
     {
+        // Check if any slot has the same item with count lower than maximum.
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null &&
+                itemInSlot.item == item &&
+                itemInSlot.count < maxStackedItems)
+            {
+                // If a stack < 999, add the new item to the same slot
+                itemInSlot.count++;
+                itemInSlot.RefreshCount();
+                return true;
+            }
+        }
         // Find an empty slot
-        for(int i = 0; i < inventorySlots.Length; i++)
+        for (int i = 0; i < inventorySlots.Length; i++)
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();

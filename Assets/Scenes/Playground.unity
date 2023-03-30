@@ -3859,6 +3859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1bb15e92267ed4e82ca33eae934275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxStackedItems: 999
   inventorySlots: []
   inventoryItemPrefab: {fileID: 0}
 --- !u!4 &758765084
@@ -5777,6 +5778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1bb15e92267ed4e82ca33eae934275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxStackedItems: 999
   inventorySlots:
   - {fileID: 370550390}
   - {fileID: 2046179030}
