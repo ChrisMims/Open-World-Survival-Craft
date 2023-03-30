@@ -21,7 +21,12 @@ public class InventoryDemo : MonoBehaviour
     }
     public void GetSelectedItem()
     {
-        Item receivedItem = inventoryManager.GetSelectedItem();
+        Item receivedItem = inventoryManager.GetSelectedItem(false);
+        item = receivedItem;
+    }
+    public void UseSelectedItem()
+    {
+        Item receivedItem = inventoryManager.GetSelectedItem(true);
         item = receivedItem;
     }
 }
