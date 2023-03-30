@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -29,9 +30,12 @@ public class InventoryManager : MonoBehaviour
 
     public int maxStackedItems = 999;
     public InventorySlot[] inventorySlots;
-    public GameObject inventoryItemPrefab;
+    public GameObject inventoryItemPrefab, mainInventoryWindow, openInventoryButton;
+    //public Button openInventoryButton, closeInventoryButton;
+    [HideInInspector] public bool mainInventoryOpen = false;
 
     int selectedSlot = -1;
+    public InventoryDemo inventoryDemo;
     private void Start()
     {
         ChangeSelectedSlot(0);
@@ -46,6 +50,12 @@ public class InventoryManager : MonoBehaviour
                 ChangeSelectedSlot(number - 1);
             }
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            // Toggle main inventory when the I key is pressed
+            mainInventoryOpen = !mainInventoryOpen;
+            ToggleInventory(mainInventoryOpen);
+        }
     }
     void ChangeSelectedSlot(int newValue)
     {
@@ -55,11 +65,27 @@ public class InventoryManager : MonoBehaviour
         }
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
+
+        inventoryDemo.GetSelectedItem();
+    }
+    void ToggleInventory(bool mainInventoryVisible)
+    {
+        if (mainInventoryVisible)
+        {
+            mainInventoryWindow.SetActive(true);
+            openInventoryButton.SetActive(false);
+        }
+        else
+        {
+            mainInventoryWindow.SetActive(false);
+            openInventoryButton.SetActive(true);
+        }
     }
     public bool AddItem(Item item)
     {
         // Check if any slot has the same item with count lower than maximum.
-        //for (int i = 0; i < inventorySlots.Length; i++)
+        // for (int i = 0; i < inventorySlots.Length; i++)
+        // This method is supposedly less error-prone: https://stackoverflow.com/a/20940980
         for (int i = inventorySlots.GetLowerBound(0); i <= inventorySlots.GetUpperBound(0); i++)
         {
             InventorySlot slot = inventorySlots[i];
@@ -95,5 +121,15 @@ public class InventoryManager : MonoBehaviour
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
+    }
+    public Item GetSelectedItem()
+    {
+        InventorySlot slot = inventorySlots[selectedSlot];
+        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+        if (itemInSlot != null)
+        {
+            return itemInSlot.item;
+        }
+        return null;
     }
 }
