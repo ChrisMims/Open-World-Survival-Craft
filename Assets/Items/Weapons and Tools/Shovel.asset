@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b0db2aa5ffc5a64ab9390f7b2befe00, type: 3}
-  m_Name: Digging Tool
+  m_Name: Shovel
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   type: 1
@@ -18,3 +18,7 @@ MonoBehaviour:
   range: {x: 5, y: 4}
   stackable: 0
   image: {fileID: 21300000, guid: b3a67fc6bd9f6405ba5785b99c7d830a, type: 3}
+  maxDurability: 0
+  durability: 0
+  attackPower: 0
+  itemPrefab: {fileID: 100000, guid: d062f5c56ffb55c4f832432ada269abe, type: 3}

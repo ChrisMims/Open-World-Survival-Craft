@@ -16,6 +16,13 @@ public class Item : ScriptableObject
     [Header("Both")]
     public Sprite image;
 
+    [Header("Weapons and Tools")]
+    public int maxDurability;
+    public int durability;
+    public int attackPower;
+
+    [Header("3D Model")]
+    public GameObject itemPrefab;
 }
 
 public enum ItemType
@@ -26,5 +33,6 @@ public enum ItemType
 public enum ActionType
 {
     Dig,
-    Mine
+    Mine,
+    Chop
 }

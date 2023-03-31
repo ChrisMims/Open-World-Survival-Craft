@@ -34,6 +34,7 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab, mainInventoryWindow, openInventoryButton;
     [HideInInspector] public bool mainInventoryOpen = false;
+    public Weapon weapon;
 
     int selectedSlot = -1;
     public InventoryDemo inventoryDemo;
@@ -43,11 +44,11 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        ChangeSelectedSlot(0);
         foreach(var item in startItems)
         {
             AddItem(item);
         }
+        ChangeSelectedSlot(0);
     }
     private void Update()
     {
@@ -80,6 +81,7 @@ public class InventoryManager : MonoBehaviour
         {
             Debug.Log("Received item: " + inventoryDemo.item);
         }
+        weapon.HoldWeapon(inventoryDemo.item);
     }
     void ToggleInventory(bool mainInventoryVisible)
     {
