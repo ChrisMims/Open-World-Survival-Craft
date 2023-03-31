@@ -26,18 +26,28 @@ public class InventoryManager : MonoBehaviour
 
         }
     */
+    public static InventoryManager instance;
+    
+    [Tooltip("Starting items can be configured here.")]public Item[] startItems;
 
     public int maxStackedItems = 999;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab, mainInventoryWindow, openInventoryButton;
-    //public Button openInventoryButton, closeInventoryButton;
     [HideInInspector] public bool mainInventoryOpen = false;
 
     int selectedSlot = -1;
     public InventoryDemo inventoryDemo;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         ChangeSelectedSlot(0);
+        foreach(var item in startItems)
+        {
+            AddItem(item);
+        }
     }
     private void Update()
     {

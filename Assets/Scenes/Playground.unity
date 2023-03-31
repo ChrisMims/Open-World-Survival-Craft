@@ -5762,6 +5762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1bb15e92267ed4e82ca33eae934275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startItems:
+  - {fileID: 11400000, guid: e2255852f30498e49952a8791b90ec30, type: 2}
+  - {fileID: 11400000, guid: ce24ec2f687239e4eb7b0d37dc98b36b, type: 2}
   maxStackedItems: 999
   inventorySlots:
   - {fileID: 370550390}
