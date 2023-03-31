@@ -58,3 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# 3rd-Party Tools. Excluded to avoid licensing issues.
+/[Aa]ssets/3rd-PartyAssets*
