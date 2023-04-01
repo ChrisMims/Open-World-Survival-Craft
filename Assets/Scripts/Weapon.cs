@@ -11,37 +11,63 @@ public class Weapon : MonoBehaviour
     [HideInInspector] public int currentDurability;
     [HideInInspector] GameObject weaponBeingReplaced;
     [HideInInspector] public GameObject currentTarget;
+
+    Ray ray;
+    public float maxDistance = 50f;
+    public float hitRate = 0.25f;
+    public Transform rayStartLocation;
+
+    private Camera cam;
+    // Duration that the line is visible
+    private WaitForSeconds hitDuration = new WaitForSeconds(0.7f);
+    private LineRenderer lineRenderer;
+    private float nextHit;
+    public LayerMask layersToHit;
+
     void Start()
     {
         // Place the currently equipped item in character's hand
         HoldWeapon(currentlyHeldWeapon);
+
+        ray = new Ray(transform.position, transform.forward);
+
+        lineRenderer = GetComponent<LineRenderer>();
+        cam = Camera.main;
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            StartCoroutine(ShotEffect());
             Hit();
         }
+
     }
     public void Hit()
     {
-        if(currentTarget == null)
+        Vector3 rayOrigin = cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
+        RaycastHit hit;
+        lineRenderer.SetPosition(0, rayStartLocation.position);
+
+        if (Physics.Raycast(rayOrigin, cam.transform.forward, out hit, maxDistance, layersToHit))
         {
-            return;
-        }
-        BreakableObject breakableObject = currentTarget.GetComponent<BreakableObject>();
-        int newHealthValue = breakableObject.health - currentlyHeldWeapon.attackPower;
-        if(newHealthValue <= 0)
-        {
-            // Break or kill
-            breakableObject.OutOfHealth();
-        }
-        else
-        {
-            breakableObject.TakeHit(newHealthValue);
-            //Debug.Log("Target health: " + breakableObject.health + " / " + breakableObject.maxHealth);
-            Debug.Log("Target health: " + newHealthValue + " / " + breakableObject.maxHealth);
-            
+            lineRenderer.SetPosition(1, hit.point);
+            currentTarget = hit.transform.gameObject;
+            if(currentTarget.tag != "Enemy" &&
+                currentTarget.tag != "BreakableObject" &&
+                currentTarget.tag != "UsableObject")
+            {
+                //Debug.LogError("Null");
+                return; 
+            }
+            BreakableObject breakableObject = currentTarget.GetComponent<BreakableObject>();
+            int newHealthValue = breakableObject.health - currentlyHeldWeapon.attackPower;
+            if(newHealthValue <= 0) { breakableObject.OutOfHealth(); }
+            else
+            {
+                breakableObject.TakeHit(newHealthValue);
+                Debug.Log("Target health: " + newHealthValue + " / " + breakableObject.maxHealth);
+            }
         }
     }
     public void HoldWeapon(Item item)
@@ -55,23 +81,10 @@ public class Weapon : MonoBehaviour
             currentlyHeldWeapon = item;            
         }
     }
-    void OnCollisionEnter(Collision collision)
+    private IEnumerator ShotEffect()
     {
-        Debug.Log("Collision entered by " + collision.gameObject.name);
-        GameObject other = collision.gameObject;
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Enemy" || other.tag == "BreakableObject")
-        {
-            Debug.Log("Trigger hit by " + other.name);
-            currentTarget = other.gameObject;
-        }
-        else if(other.tag == "DroppedItem")
-        {
-            Debug.Log("Other trigger hit by " + other.name);
-            inventoryManager.AddItem(other.GetComponent<DroppedItem>().itemToAdd);
-            Destroy(other.gameObject);
-        }
+        lineRenderer.enabled = true;
+        yield return hitDuration;
+        lineRenderer.enabled = false;
     }
 }
