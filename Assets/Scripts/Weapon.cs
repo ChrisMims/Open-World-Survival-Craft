@@ -7,7 +7,8 @@ public class Weapon : MonoBehaviour
     public Item currentlyHeldWeapon;
     public Transform weaponAnchor;
     public InventoryManager inventoryManager;
-
+    
+    [HideInInspector] public int currentDurability;
     [HideInInspector] GameObject weaponBeingReplaced;
     [HideInInspector] public GameObject currentTarget;
     void Start()
@@ -51,6 +52,7 @@ public class Weapon : MonoBehaviour
             GameObject obj = Instantiate(item.itemPrefab, transform.position, transform.rotation);
             obj.transform.SetParent(weaponAnchor);
             weaponBeingReplaced = obj;
+            currentlyHeldWeapon = item;            
         }
     }
     void OnCollisionEnter(Collision collision)
