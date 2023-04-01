@@ -5,17 +5,15 @@ using UnityEngine.UI;
 
 public class DroppedItem : MonoBehaviour
 {
-    private Camera camera;
-    // Start is called before the first frame update
+    private Camera mainCamera;
     void Start()
     {
-        camera = Camera.main;
+        // Makes sure that the UI element always faces the camera.
+        mainCamera = Camera.main;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        this.transform.LookAt(transform.position + camera.transform.rotation * Vector3.back, camera.transform.rotation * Vector3.up);
+        this.transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.back, mainCamera.transform.rotation * Vector3.up);
     }
     public void UpdateTexture(GameObject lastDropped, Item item)
     {

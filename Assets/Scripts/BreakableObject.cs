@@ -10,15 +10,19 @@ public class BreakableObject : MonoBehaviour
     public Item itemToDrop;
     public int minQuantity, maxQuantity;
     private int droppedQuantity;
+    private Camera mainCamera;
 
     public TextMeshProUGUI healthText;
     public DroppedItem droppedItem;
-
-    // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
-
+        mainCamera = Camera.main;
+    }
+    private void Update()
+    {
+        // Makes sure that the UI element always faces the camera.
+        this.transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
     }
     /// <summary>
     /// Handles dropping items and calculating damage received when hit.

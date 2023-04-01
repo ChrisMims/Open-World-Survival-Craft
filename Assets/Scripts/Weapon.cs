@@ -9,15 +9,11 @@ public class Weapon : MonoBehaviour
 
     [HideInInspector] GameObject weaponBeingReplaced;
     [HideInInspector] public GameObject currentTarget;
-
-    // Start is called before the first frame update
     void Start()
     {
         // Place the currently equipped item in character's hand
         HoldWeapon(currentlyHeldWeapon);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
