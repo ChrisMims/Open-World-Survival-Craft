@@ -160,4 +160,12 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "DroppedItem")
+        {
+            AddItem(other.GetComponent<DroppedItem>().itemToAdd);
+            Destroy(other.gameObject);
+        }
+    }
 }
