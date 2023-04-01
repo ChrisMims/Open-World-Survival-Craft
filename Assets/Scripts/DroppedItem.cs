@@ -11,8 +11,6 @@ public class DroppedItem : MonoBehaviour
     {
         // Makes sure that the UI element always faces the camera.
         mainCamera = Camera.main;
-
-        //item = ;
     }
     void Update()
     {
