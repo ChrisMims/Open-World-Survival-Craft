@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public Item currentlyHeldWeapon;
     public Transform weaponAnchor;
+    public InventoryManager inventoryManager;
 
     [HideInInspector] GameObject weaponBeingReplaced;
     [HideInInspector] public GameObject currentTarget;
@@ -54,16 +55,21 @@ public class Weapon : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision entered");
+        Debug.Log("Collision entered by " + collision.gameObject.name);
         GameObject other = collision.gameObject;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag != "Player")
+        if(other.tag == "Enemy" || other.tag == "BreakableObject")
         {
             Debug.Log("Trigger hit by " + other.name);
             currentTarget = other.gameObject;
         }
-
+        else if(other.tag == "DroppedItem")
+        {
+            Debug.Log("Other trigger hit by " + other.name);
+            inventoryManager.AddItem(other.GetComponent<DroppedItem>().itemToAdd);
+            Destroy(other.gameObject);
+        }
     }
 }

@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 9069115364149637015}
   m_Layer: 0
   m_Name: Tree_05
-  m_TagString: Enemy
+  m_TagString: BreakableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -371,3 +371,4 @@ MonoBehaviour:
   minQuantity: 10
   maxQuantity: 10
   healthText: {fileID: 1497653365}
+  droppedItem: {fileID: 0}

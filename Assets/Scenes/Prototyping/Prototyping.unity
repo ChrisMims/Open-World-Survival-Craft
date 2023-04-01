@@ -3891,6 +3891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afcd2d4af5861a4a932cb03a91adbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!4 &758765084
 Transform:
   m_ObjectHideFlags: 0
@@ -4950,6 +4951,7 @@ MonoBehaviour:
   currentlyHeldWeapon: {fileID: 11400000, guid: e2255852f30498e49952a8791b90ec30,
     type: 2}
   weaponAnchor: {fileID: 1855831267}
+  inventoryManager: {fileID: 1171819649}
   currentTarget: {fileID: 0}
 --- !u!135 &927482594
 SphereCollider:

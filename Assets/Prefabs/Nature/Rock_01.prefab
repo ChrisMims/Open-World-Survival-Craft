@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7931722862089366333}
   m_Layer: 0
   m_Name: Rock_01
-  m_TagString: Untagged
+  m_TagString: BreakableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,3 +134,4 @@ MonoBehaviour:
   minQuantity: 10
   maxQuantity: 10
   healthText: {fileID: 0}
+  droppedItem: {fileID: 0}
