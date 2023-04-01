@@ -60,3 +60,4 @@ crashlytics-build.properties
 
 # 3rd-Party Tools. Excluded to avoid licensing issues.
 /[Aa]ssets/3rd-PartyAssets*
+Open World Survivor Craft_BurstDebugInformation_DoNotShip/Data/Plugins/x86_64/lib_burst_generated.txt

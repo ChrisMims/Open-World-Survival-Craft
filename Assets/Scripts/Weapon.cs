@@ -5,10 +5,10 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public Item currentlyHeldWeapon;
-    public MeshCollider meshCollider;
     public Transform weaponAnchor;
 
     [HideInInspector] GameObject weaponBeingReplaced;
+    [HideInInspector] public GameObject currentTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +20,41 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Hit();
+        }
+    }
+    public void Hit()
+    {
+        if(currentTarget == null)
+        {
+            return;
+        }
+        BreakableObject breakableObject = currentTarget.GetComponent<BreakableObject>();
+        int newHealthValue = breakableObject.health - currentlyHeldWeapon.attackPower;
+        if(newHealthValue <= 0)
+        {
+            // Break or kill
+            breakableObject.OutOfHealth();
+        }
+        else
+        {
+            breakableObject.TakeHit(newHealthValue);
+            //Debug.Log("Target health: " + breakableObject.health + " / " + breakableObject.maxHealth);
+            Debug.Log("Target health: " + newHealthValue + " / " + breakableObject.maxHealth);
+            
+        }
     }
     public void HoldWeapon(Item item)
     {
         Destroy(weaponBeingReplaced);
-        GameObject obj = Instantiate(item.itemPrefab, transform.position, transform.rotation);
-        obj.transform.SetParent(weaponAnchor);
-        weaponBeingReplaced = obj;
+        if(item != null)
+        {
+            GameObject obj = Instantiate(item.itemPrefab, transform.position, transform.rotation);
+            obj.transform.SetParent(weaponAnchor);
+            weaponBeingReplaced = obj;
+        }
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -39,6 +66,7 @@ public class Weapon : MonoBehaviour
         if(other.tag != "Player")
         {
             Debug.Log("Trigger hit by " + other.name);
+            currentTarget = other.gameObject;
         }
 
     }
