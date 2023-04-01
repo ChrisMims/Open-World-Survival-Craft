@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     public Item currentlyHeldWeapon;
     public Transform weaponAnchor;
     public InventoryManager inventoryManager;
+    public HUDManager hudManager;
     
     [HideInInspector] public int currentDurability;
     [HideInInspector] GameObject weaponBeingReplaced;
@@ -24,6 +25,12 @@ public class Weapon : MonoBehaviour
     private float nextHit;
     public LayerMask layersToHit;
 
+    private DebugManager debugManager;
+    private void Awake()
+    {
+        // For debugging purposes:
+        debugManager = GameObject.Find("DebugManager").GetComponent<DebugManager>();
+    }
     void Start()
     {
         // Place the currently equipped item in character's hand
@@ -41,7 +48,6 @@ public class Weapon : MonoBehaviour
             StartCoroutine(ShotEffect());
             Hit();
         }
-
     }
     public void Hit()
     {
@@ -65,6 +71,7 @@ public class Weapon : MonoBehaviour
             if(newHealthValue <= 0) { breakableObject.OutOfHealth(); }
             else
             {
+                hudManager.UpdateTargetText(hudManager.targetText, currentTarget.name);
                 breakableObject.TakeHit(newHealthValue);
                 Debug.Log("Target health: " + newHealthValue + " / " + breakableObject.maxHealth);
             }
