@@ -62,3 +62,4 @@ crashlytics-build.properties
 /[Aa]ssets/3rd-PartyAssets*
 Open World Survivor Craft_BurstDebugInformation_DoNotShip/Data/Plugins/x86_64/lib_burst_generated.txt
 /[Aa]ssets/[Pp]lugins/*
+UserSettings/Search.settings

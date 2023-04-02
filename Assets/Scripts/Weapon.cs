@@ -29,7 +29,8 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         // For debugging purposes:
-        debugManager = GameObject.Find("DebugManager").GetComponent<DebugManager>();
+        //debugManager = GameObject.Find("DebugManager").GetComponent<DebugManager>();
+        Cursor.lockState = CursorLockMode.None;
     }
     void Start()
     {
@@ -40,8 +41,8 @@ public class Weapon : MonoBehaviour
 
         lineRenderer = GetComponent<LineRenderer>();
         cam = Camera.main;
-    }
-    void Update()
+    }    
+    void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {

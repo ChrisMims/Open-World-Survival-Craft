@@ -2,10 +2,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("UI")]
+    [Required]
     public Image image;
     public TextMeshProUGUI countText;
     public Image countBackgroundImage;

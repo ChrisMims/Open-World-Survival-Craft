@@ -7,8 +7,6 @@ public class HUDManager : MonoBehaviour
 {
     public Weapon weapon;
     public TextMeshProUGUI targetText;
-
-    [Tooltip("Length (seconds) of the global tick rate for some HUD elements.")]
     public WaitForSeconds tickLength = new WaitForSeconds(2f);
     private float nextTick;
     private void Start()
