@@ -21,5 +21,5 @@ MonoBehaviour:
   maxDurability: 0
   durability: 0
   attackPower: 10
-  itemPrefab: {fileID: 4385080170328260021, guid: ff62b58c5a9ea164fa8ddf8038e10cd1,
+  itemPrefab: {fileID: 5197205788037878631, guid: 9c9dec4e348381642b24ea9a545a662c,
     type: 3}

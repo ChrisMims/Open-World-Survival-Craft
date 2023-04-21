@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using MoreMountains.Feedbacks;
 
 public class Weapon : MonoBehaviour
 {
+    [HorizontalGroup("Split", 55, LabelWidth = 70)]
+    [HideLabel, PreviewField(55, ObjectFieldAlignment.Left)]
     public Item currentlyHeldWeapon;
+    [VerticalGroup("Split/Meta")]
     public Transform weaponAnchor;
+    [VerticalGroup("Split/Meta")]
     public InventoryManager inventoryManager;
+    [VerticalGroup("Split/Meta")]
     public HUDManager hudManager;
     
     [HideInInspector] public int currentDurability;
@@ -14,6 +21,8 @@ public class Weapon : MonoBehaviour
     [HideInInspector] public GameObject currentTarget;
 
     Ray ray;
+    [Range(5f, 100f)]
+    [Tooltip("Defines the maximum range of a weapon's reach.")]
     public float maxDistance = 50f;
     public float hitRate = 0.25f;
     public Transform rayStartLocation;
@@ -26,6 +35,7 @@ public class Weapon : MonoBehaviour
     public LayerMask layersToHit;
 
     private DebugManager debugManager;
+    [SerializeField] private MMFeedbacks MMFeedbacks;
     private void Awake()
     {
         // For debugging purposes:
@@ -42,12 +52,13 @@ public class Weapon : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         cam = Camera.main;
     }    
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(ShotEffect());
             Hit();
+            //MMFeedbacks.PlayFeedbacks();
         }
     }
     public void Hit()

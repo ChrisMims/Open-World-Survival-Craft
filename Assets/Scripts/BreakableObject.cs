@@ -3,27 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using Sirenix.OdinInspector;
+using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 public class BreakableObject : MonoBehaviour
 {
     public int maxHealth, health;
+    [Button("Restore Max Health")]
+    private void DefaultSizedButton()
+    {
+        health = maxHealth;
+    }
+    [Required]
     public Item itemToDrop;
     public int minQuantity, maxQuantity;
     private int droppedQuantity;
     private Camera mainCamera;
 
-    public TextMeshProUGUI healthText;
     public DroppedItem droppedItem;
+
+    [Required]
+    [SerializeField] private MMFeedbacks MMFeedbacks;
+    [Required]
+    public MMProgressBar healthBar;
+
     void Start()
     {
         health = maxHealth;
         mainCamera = Camera.main;
+        healthBar.MaximumBarFillValue = maxHealth;
+        healthBar.MinimumBarFillValue = 0;
     }
-    private void Update()
-    {
-        // Makes sure that the UI element always faces the camera.
-        this.transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
-    }
+    //}
     /// <summary>
     /// Handles dropping items and calculating damage received when hit.
     /// </summary>
@@ -37,7 +48,8 @@ public class BreakableObject : MonoBehaviour
         // Play animation
 
         // Update healthbar
-        healthText.text = ("[" + health.ToString() + " / " + maxHealth.ToString() + "] HP");
+        healthBar.UpdateBar(health, 0f, (100 * maxHealth));
+
         // Randomly drop items <= maxQuantity
         if (droppedQuantity < maxQuantity)
         {

@@ -1,10 +1,16 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
-public class InventorySlot : MonoBehaviour, IDropHandler//, IPointerDownHandler, IPointerUpHandler
+public class InventorySlot : MonoBehaviour, IDropHandler
 {
+    [Required]
+    [PreviewField]
+    //[HorizontalGroup("Split", 55, LabelWidth = 70)]
     public Image image;
+    //[VerticalGroup("Split/Right")]
+    [ColorPalette]
     public Color selectedColor, unselectedColor;
     private void Awake()
     {

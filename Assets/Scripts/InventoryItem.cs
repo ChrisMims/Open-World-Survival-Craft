@@ -6,24 +6,24 @@ using Sirenix.OdinInspector;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [Header("UI")]
     [Required]
+    [PreviewField(60), HideLabel]
+    [HorizontalGroup("Split", 60)]
     public Image image;
+
+    [VerticalGroup("Split/Right")]
     public TextMeshProUGUI countText;
+
+    [VerticalGroup("Split/Right")]
     public Image countBackgroundImage;
+
+    [VerticalGroup("Split/Right")]
+    [Tooltip("Is the canvas a child of another game object?")]
+    public bool canvasIsChild = false;
 
     [HideInInspector] public Item item;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
-
-    [Tooltip("Is the canvas a child of another game object?")] public bool canvasIsChild = false;
-    /*
-        private void Start()
-        {
-            // Just for testing.
-            InitialiseItem(item);
-        }
-    */
     public void InitialiseItem(Item newItem)
     {
         item = newItem;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -31,11 +32,12 @@ public class InventoryManager : MonoBehaviour
     [Tooltip("Starting items can be configured here.")]public Item[] startItems;
 
     public int maxStackedItems = 999;
+    
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab, mainInventoryWindow, openInventoryButton;
     [HideInInspector] public bool mainInventoryOpen = false;
     public Weapon weapon;
-
+    [PreviewField]
     int selectedSlot = -1;
     public InventoryDemo inventoryDemo;
     private void Awake()
